@@ -11,12 +11,16 @@
     public function __construct(protected string $nombre, public int $precio, public bool $disponible, string $imagen)
     {
         if($imagen){
-            $imagenPlaceholder= $imagen;
+            self::$imagenPlaceholder= $imagen;
         }
     }
 
     public static function obtenerImagenProducto(){
        return self::$imagenPlaceholder;
+    }
+
+    public static function obtenerProducto(){
+        echo "obteniendo datos del producto...";
     }
 
     public function mostrarProducto(): void{
@@ -37,12 +41,17 @@
 
  };
 
+ echo Producto :: obtenerProducto();
+ echo '<br>';
  echo Producto :: obtenerImagenProducto();
+ echo '<br>';
 
 
 
- $producto = new Producto('Monitor normal', 200, true);
+ $producto = new Producto('Monitor normal', 200, true, '');
 /*  $producto->mostrarProducto(); */
+
+
     echo $producto->getNombre();
     $producto->setNombre('nuevo nombre');
 
@@ -53,9 +62,12 @@
     var_dump($producto);
     echo "</pre>";
 
- $producto2 = new Producto('Monitor curvo', 400, false);
+ $producto2 = new Producto('Monitor curvo', 400, false, 'monitorCurvo.jpg');
 /*  $producto2->mostrarProducto(); */
 echo $producto2->getNombre();
+echo '<br>';
+echo $producto2->obtenerImagenProducto();
+echo '<br>';
 
 /*  echo "<pre>";
     var_dump($producto2);
